@@ -1,8 +1,17 @@
 # gateway
 
-Gateway basado en Nginx que actúa como punto único de entrada para los microservicios.
+Gateway basado en Nginx que actúa como punto único de entrada para los microservicios de la plataforma.
 
-## Rutas expuestas
+## Rol del componente
+
+Este gateway expone un único punto de acceso HTTP y enruta las solicitudes hacia los servicios internos:
+
+- `products-service`
+- `users-service`
+- `payments-service`
+- `orders-service`
+
+## Rutas disponibles
 
 - `GET /health`
 - `GET /products`
@@ -17,16 +26,14 @@ Gateway basado en Nginx que actúa como punto único de entrada para los microse
 - `GET /orders/{order_id}`
 - `POST /orders`
 
-## Desarrollo local
+## Ejecución recomendada
 
-Este gateway espera que los microservicios estén corriendo localmente en:
+La forma recomendada de ejecutar el gateway es como parte del stack completo con Docker Compose.
 
-- `products-service` → `127.0.0.1:8001`
-- `users-service` → `127.0.0.1:8002`
-- `payments-service` → `127.0.0.1:8003`
-- `orders-service` → `127.0.0.1:8004`
+### Levantar todo el stack
 
-## Build de imagen
+Desde `deploy/docker-compose`:
 
 ```bash
-docker build -t devops-gateway:local -f gateway/Dockerfile gateway
+docker compose up --build
+

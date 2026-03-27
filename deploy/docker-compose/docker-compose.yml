@@ -1,0 +1,40 @@
+services:
+  products-service:
+    build:
+      context: ../../services/products-service
+    container_name: products-service
+    ports:
+      - "8001:8001"
+
+  users-service:
+    build:
+      context: ../../services/users-service
+    container_name: users-service
+    ports:
+      - "8002:8002"
+
+  payments-service:
+    build:
+      context: ../../services/payments-service
+    container_name: payments-service
+    ports:
+      - "8003:8003"
+
+  orders-service:
+    build:
+      context: ../../services/orders-service
+    container_name: orders-service
+    ports:
+      - "8004:8004"
+
+  gateway:
+    build:
+      context: ../../gateway
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - products-service
+      - users-service
+      - payments-service
+      - orders-service
