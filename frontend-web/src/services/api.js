@@ -1,18 +1,29 @@
 const API_BASE_URL = ''
 
 async function request(path, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const config = {
     headers: {
       'Content-Type': 'application/json'
     },
     ...options
-  })
+  }
+
+  const response = await fetch(`${API_BASE_URL}${path}`, config)
 
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} - ${response.statusText}`)
   }
 
-  const data = await response.json()
+  if (response.status === 204) {
+    return null
+  }
+
+  const text = await response.text()
+  return text ? JSON.parse(text) : null
+}
+
+async function getList(path) {
+  const data = await request(path)
 
   if (Array.isArray(data)) {
     return data
@@ -26,17 +37,31 @@ async function request(path, options = {}) {
 }
 
 export async function getProducts() {
-  return request('/products')
+  return getList('/products')
 }
 
 export async function getUsers() {
-  return request('/users')
+  return getList('/users')
 }
 
 export async function getOrders() {
-  return request('/orders')
+  return getList('/orders')
 }
 
 export async function getPayments() {
-  return request('/payments')
+  return getList('/payments')
+}
+
+export async function createOrder(payload) {
+  return request('/orders', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+}
+
+export async function createPayment(payload) {
+  return request('/payments', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
 }
