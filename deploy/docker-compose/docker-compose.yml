@@ -29,7 +29,8 @@ services:
 
   gateway:
     build:
-      context: ../../gateway
+      context: ../..
+      dockerfile: gateway/Dockerfile
     container_name: gateway
     ports:
       - "8080:8080"
