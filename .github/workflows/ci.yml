@@ -120,7 +120,7 @@ jobs:
       matrix:
         image:
           - name: gateway
-            context: gateway
+            context: .
             dockerfile: gateway/Dockerfile
             image_name: devops-gateway
           - name: products-service
