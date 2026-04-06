@@ -1,0 +1,168 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - "feature/**"
+      - "chore/**"
+      - "fix/**"
+  pull_request:
+    branches:
+      - main
+      - develop
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  validate-docs:
+    name: Validate docs and repository structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run docs validation
+        shell: bash
+        run: |
+          if [ -f Makefile ]; then
+            if make -n check-docs >/dev/null 2>&1; then
+              make check-docs
+            else
+              echo "Target 'check-docs' not found in Makefile. Skipping docs validation."
+            fi
+          else
+            echo "Makefile not found. Skipping docs validation."
+          fi
+
+  test-services:
+    name: Test ${{ matrix.service.name }}
+    runs-on: ubuntu-latest
+    needs: validate-docs
+
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - name: products-service
+            path: services/products-service
+          - name: users-service
+            path: services/users-service
+          - name: orders-service
+            path: services/orders-service
+          - name: payments-service
+            path: services/payments-service
+
+    defaults:
+      run:
+        working-directory: ${{ matrix.service.path }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: |
+            ${{ matrix.service.path }}/requirements.txt
+            ${{ matrix.service.path }}/requirements-dev.txt
+            ${{ matrix.service.path }}/pyproject.toml
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+          if [ -f requirements-dev.txt ]; then
+            pip install -r requirements-dev.txt
+          fi
+
+          if [ -f pyproject.toml ]; then
+            pip install .
+          fi
+
+          pip install pytest
+
+      - name: Run tests
+        shell: bash
+        run: |
+          if [ -d tests ]; then
+            pytest -v
+          else
+            echo "No tests directory found in ${{ matrix.service.path }}"
+            exit 1
+          fi
+
+  build-images:
+    name: Build Docker image - ${{ matrix.image.name }}
+    runs-on: ubuntu-latest
+    needs: test-services
+
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - name: gateway
+            context: gateway
+            dockerfile: gateway/Dockerfile
+            image_name: devops-gateway
+          - name: products-service
+            context: services/products-service
+            dockerfile: services/products-service/Dockerfile
+            image_name: products-service
+          - name: users-service
+            context: services/users-service
+            dockerfile: services/users-service/Dockerfile
+            image_name: users-service
+          - name: orders-service
+            context: services/orders-service
+            dockerfile: services/orders-service/Dockerfile
+            image_name: orders-service
+          - name: payments-service
+            context: services/payments-service
+            dockerfile: services/payments-service/Dockerfile
+            image_name: payments-service
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.image.context }}
+          file: ${{ matrix.image.dockerfile }}
+          push: false
+          load: false
+          tags: ${{ matrix.image.image_name }}:ci-${{ github.sha }}
+
+  ci-status:
+    name: CI status
+    runs-on: ubuntu-latest
+    needs:
+      - validate-docs
+      - test-services
+      - build-images
+    steps:
+      - name: Final status
+        run: echo "CI pipeline completed successfully."
