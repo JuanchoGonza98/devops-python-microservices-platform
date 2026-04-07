@@ -1,67 +1,120 @@
-# Docker Compose Local Stack Runbook
+# Docker Compose — Local Stack Runbook
 
 ## Objetivo
 
 Levantar y validar localmente la plataforma completa usando Docker Compose.
 
-## Archivo principal
+---
+
+## Archivo Principal
 
 ```text
 deploy/docker-compose/docker-compose.yml
-Servicios incluidos
-products-service
-users-service
-payments-service
-orders-service
-gateway
-Requisitos
+```
+
+---
+
+## Servicios Incluidos
+
+- `products-service`
+- `users-service`
+- `payments-service`
+- `orders-service`
+- `gateway`
+
+---
+
+## Requisitos
 
 Antes de levantar el stack, asegúrate de tener instalado:
 
-Docker
-Docker Compose
+- Docker
+- Docker Compose
 
 También debes estar ubicado en la raíz del proyecto:
 
+```bash
 cd ~/DevOps-Project/devops-python-microservices-platform
-Levantar el stack
+```
+
+---
+
+## Levantar el Stack
 
 Desde la raíz del proyecto:
 
+```bash
 make compose-up
+```
 
 O directamente:
 
+```bash
 cd deploy/docker-compose
 docker compose up --build
-Verificar contenedores en ejecución
+```
+
+---
+
+## Verificar Contenedores en Ejecución
+
+```bash
 make compose-ps
+```
 
 O directamente:
 
+```bash
 docker compose -f deploy/docker-compose/docker-compose.yml ps
-Ver logs del stack
+```
+
+---
+
+## Ver Logs del Stack
+
+```bash
 make compose-logs
+```
 
 O directamente:
 
+```bash
 docker compose -f deploy/docker-compose/docker-compose.yml logs -f
-Probar el gateway
-Con Makefile
+```
+
+---
+
+## Probar el Gateway
+
+### Con Makefile
+
+```bash
 make gateway-test
-Manualmente con curl
+```
+
+### Manualmente con `curl`
+
+```bash
 curl http://127.0.0.1:8080/health
 curl http://127.0.0.1:8080/products
 curl http://127.0.0.1:8080/users
 curl http://127.0.0.1:8080/payments
 curl http://127.0.0.1:8080/orders
-Respuestas esperadas
-Health del gateway
-{"status":"ok","service":"gateway"}
-Products
+```
 
-Debe devolver una estructura similar a:
+---
 
+## Respuestas Esperadas
+
+### Health del Gateway
+
+```json
+{"status": "ok", "service": "gateway"}
+```
+
+### Products
+
+```json
 {
   "items": [
     {
@@ -73,10 +126,11 @@ Debe devolver una estructura similar a:
   ],
   "count": 3
 }
-Users
+```
 
-Debe devolver una estructura similar a:
+### Users
 
+```json
 {
   "items": [
     {
@@ -87,10 +141,11 @@ Debe devolver una estructura similar a:
   ],
   "count": 2
 }
-Payments
+```
 
-Debe devolver una estructura similar a:
+### Payments
 
+```json
 {
   "items": [
     {
@@ -104,10 +159,11 @@ Debe devolver una estructura similar a:
   ],
   "count": 1
 }
-Orders
+```
 
-Debe devolver una estructura similar a:
+### Orders
 
+```json
 {
   "items": [
     {
@@ -121,61 +177,90 @@ Debe devolver una estructura similar a:
   ],
   "count": 1
 }
-Detener el stack
+```
+
+---
+
+## Detener el Stack
+
+```bash
 make compose-down
+```
 
 O directamente:
 
+```bash
 docker compose -f deploy/docker-compose/docker-compose.yml down
-Reconstruir imágenes
+```
+
+---
+
+## Reconstruir Imágenes
+
+```bash
 make compose-build
+```
 
 O directamente:
 
+```bash
 docker compose -f deploy/docker-compose/docker-compose.yml build
-Troubleshooting básico
-Ver si los contenedores están levantados
+```
+
+---
+
+## Troubleshooting
+
+### Ver si los contenedores están levantados
+
+```bash
 docker ps
-Ver logs de un servicio específico
+```
 
-Ejemplo para gateway:
+### Ver logs de un servicio específico
 
+```bash
 docker logs gateway
-
-Ejemplo para products-service:
-
 docker logs products-service
-El gateway responde /health pero devuelve 502
+```
+
+### El gateway responde `/health` pero devuelve `502`
 
 Esto normalmente indica que uno o más microservicios internos no están disponibles o no están resolviendo correctamente dentro de la red de Docker Compose.
 
-Pasos de verificación:
+**Pasos de verificación:**
 
-Confirmar que todos los contenedores están en ejecución.
-Revisar logs del gateway.
-Revisar logs del servicio afectado.
-Reconstruir y volver a levantar el stack.
+1. Confirmar que todos los contenedores están en ejecución.
+2. Revisar logs del gateway.
+3. Revisar logs del servicio afectado.
+4. Reconstruir y volver a levantar el stack.
 
-Comandos útiles:
-
+```bash
 make compose-ps
 make compose-logs
 make compose-down
 make compose-up
-Resultado esperado
+```
+
+---
+
+## Resultado Esperado
 
 La fase Docker Compose se considera validada cuando:
 
-las imágenes construyen correctamente
-Docker Compose levanta todo el stack
-el gateway responde en 8080
-el gateway enruta correctamente hacia los cuatro microservicios
-el entorno local es reproducible con una sola definición
-Estado de la fase
+- Las imágenes construyen correctamente.
+- Docker Compose levanta todo el stack.
+- El gateway responde en el puerto `8080`.
+- El gateway enruta correctamente hacia los cuatro microservicios.
+- El entorno local es reproducible con una sola definición.
+
+---
+
+## Estado de la Fase
 
 Esta fase queda cerrada formalmente cuando:
 
-la documentación está actualizada
-el Makefile incluye comandos útiles para operar el stack
-el gateway fue validado a través de Docker Compose
-el flujo local está listo para servir como base antes de pasar a Kubernetes
+- La documentación está actualizada.
+- El Makefile incluye comandos útiles para operar el stack.
+- El gateway fue validado a través de Docker Compose.
+- El flujo local está listo para servir como base antes de pasar a Kubernetes.
