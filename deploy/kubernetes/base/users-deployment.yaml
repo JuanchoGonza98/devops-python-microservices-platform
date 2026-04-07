@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: users-service
-  namespace: devops-platform
   labels:
     app: users-service
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: users-service
@@ -33,3 +33,10 @@ spec:
               port: 8002
             initialDelaySeconds: 10
             periodSeconds: 20
+          resources:
+              requests:
+                cpu: "100m"
+                memory: "64Mi"
+              limits:
+                cpu: "250m"
+                memory: "128Mi"

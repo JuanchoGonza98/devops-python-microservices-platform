@@ -2,12 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: orders-service
-  namespace: devops-platform
+  labels:
+    app: orders-service
+    app.kubernetes.io/name: orders-service
 spec:
+  type: ClusterIP
   selector:
     app: orders-service
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 8004
       targetPort: 8004
-  type: ClusterIP

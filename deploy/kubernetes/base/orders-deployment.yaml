@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: orders-service
-  namespace: devops-platform
   labels:
     app: orders-service
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: orders-service
@@ -33,3 +33,10 @@ spec:
               port: 8004
             initialDelaySeconds: 10
             periodSeconds: 20
+          resources:
+              requests:
+                cpu: "100m"
+                memory: "64Mi"
+              limits:
+                cpu: "250m"
+                memory: "128Mi"
