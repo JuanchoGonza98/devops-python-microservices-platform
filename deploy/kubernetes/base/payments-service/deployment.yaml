@@ -1,36 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-service
+  name: payments-service
   labels:
-    app: users-service
+    app: payments-service
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: users-service
+      app: payments-service
   template:
     metadata:
       labels:
-        app: users-service
+        app: payments-service
     spec:
       containers:
-        - name: users-service
-          image: devops-users-service:local
-          imagePullPolicy: IfNotPresent
+        - name: payments-service
+          image: devops-payments-service
           ports:
-            - containerPort: 8002
+            - containerPort: 8003
           readinessProbe:
             httpGet:
               path: /health
-              port: 8002
+              port: 8003
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /health
-              port: 8002
+              port: 8003
             initialDelaySeconds: 10
             periodSeconds: 20
           resources:

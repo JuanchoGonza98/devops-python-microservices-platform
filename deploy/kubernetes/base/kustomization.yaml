@@ -1,22 +1,7 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-namespace: devops-platform
-
-labels:
-  - pairs:
-      app.kubernetes.io/part-of: devops-platform
-      app.kubernetes.io/managed-by: kustomize
-
 resources:
   - namespace.yaml
-  - products-deployment.yaml
-  - products-service.yaml
-  - users-deployment.yaml
-  - users-service.yaml
-  - orders-deployment.yaml
-  - orders-service.yaml
-  - payments-deployment.yaml
-  - payments-service.yaml
-  - gateway-deployment.yaml
-  - gateway-service.yaml
+  - gateway
+  - orders-service
+  - payments-service
+  - products-service
+  - users-service

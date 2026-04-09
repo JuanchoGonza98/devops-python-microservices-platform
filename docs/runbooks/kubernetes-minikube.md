@@ -266,15 +266,19 @@ For daily local work, use the Makefile targets instead of running all commands m
 
 ### Available Targets
 
-| Target                   | Description                          |
-|--------------------------|--------------------------------------|
-| `make k8s-build-local`   | Build local images in Minikube       |
-| `make k8s-apply-minikube`| Deploy to Minikube                   |
-| `make k8s-status`        | Check platform status                |
-| `make k8s-url`           | Show gateway URL                     |
-| `make k8s-test-gateway`  | Test gateway availability            |
-| `make k8s-restart`       | Restart all deployments              |
-| `make k8s-delete-minikube`| Delete the deployment               |
+| Target                    | Description                                      |
+|---------------------------|--------------------------------------------------|
+| `make k8s-build-local`    | Build local images in Minikube                   |
+| `make k8s-apply-minikube` | Deploy to Minikube                               |
+| `make k8s-status`         | Check platform status                            |
+| `make k8s-url`            | Show gateway URL                                 |
+| `make k8s-test-gateway`   | Test gateway availability                        |
+| `make k8s-test-all`       | Test all gateway routes on Minikube              |
+| `make k8s-rollout-status` | Check rollout status of all deployments          |
+| `make k8s-restart`        | Restart all deployments                          |
+| `make k8s-render-base`    | Render Kubernetes base manifests (dry-run)       |
+| `make k8s-render-minikube`| Render Minikube overlay manifests (dry-run)      |
+| `make k8s-delete-minikube`| Delete the deployment                            |
 
 ---
 
