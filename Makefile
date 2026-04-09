@@ -1,18 +1,31 @@
 .PHONY: help tree check-docs compose-up compose-down compose-logs compose-ps compose-build gateway-test
+.PHONY: k8s-build-local k8s-apply-minikube k8s-delete-minikube k8s-status k8s-url k8s-test-gateway k8s-restart
+.PHONY: k8s-render-base k8s-render-minikube k8s-rollout-status k8s-test-all
 
 COMPOSE_FILE=deploy/docker-compose/docker-compose.yml
 
 help:
 	@echo "Available targets:"
-	@echo "  make help          - Show available commands"
-	@echo "  make tree          - Show project structure"
-	@echo "  make check-docs    - Verify base documentation exists"
-	@echo "  make compose-up    - Start local stack with Docker Compose"
-	@echo "  make compose-down  - Stop local stack"
-	@echo "  make compose-logs  - Show Docker Compose logs"
-	@echo "  make compose-ps    - Show running services"
-	@echo "  make compose-build - Rebuild Docker Compose images"
-	@echo "  make gateway-test  - Test gateway endpoints"
+	@echo "  make help                - Show available commands"
+	@echo "  make tree                - Show project structure"
+	@echo "  make check-docs          - Verify base documentation exists"
+	@echo "  make compose-up          - Start local stack with Docker Compose"
+	@echo "  make compose-down        - Stop local stack"
+	@echo "  make compose-logs        - Show Docker Compose logs"
+	@echo "  make compose-ps          - Show running services"
+	@echo "  make compose-build       - Rebuild Docker Compose images"
+	@echo "  make gateway-test        - Test gateway endpoints"
+	@echo "  make k8s-build-local     - Build local images inside Minikube Docker"
+	@echo "  make k8s-apply-minikube  - Apply Kubernetes manifests for Minikube"
+	@echo "  make k8s-delete-minikube - Delete Kubernetes manifests from Minikube"
+	@echo "  make k8s-status          - Show Kubernetes resources in devops-platform"
+	@echo "  make k8s-url             - Show Gateway URL on Minikube"
+	@echo "  make k8s-test-gateway    - Test Gateway HTTP response"
+	@echo "  make k8s-restart         - Restart Kubernetes deployments"
+	@echo "  make k8s-render-base     - Render Kubernetes base manifests"
+	@echo "  make k8s-render-minikube - Render Minikube overlay manifests"
+	@echo "  make k8s-rollout-status  - Check rollout status of Kubernetes deployments"
+	@echo "  make k8s-test-all        - Test all gateway routes on Minikube"
 
 tree:
 	@find . \
@@ -54,8 +67,6 @@ gateway-test:
 	@curl -s http://127.0.0.1:8080/payments && echo
 	@curl -s http://127.0.0.1:8080/orders && echo
 
-.PHONY: k8s-build-local k8s-apply-minikube k8s-delete-minikube k8s-status k8s-url k8s-test-gateway k8s-restart
-
 k8s-build-local:
 	eval $$(minikube docker-env) && \
 	docker build -t devops-products-service:local services/products-service && \
@@ -85,3 +96,25 @@ k8s-restart:
 	kubectl rollout restart deployment/users-service -n devops-platform
 	kubectl rollout restart deployment/payments-service -n devops-platform
 	kubectl rollout restart deployment/orders-service -n devops-platform
+
+k8s-render-base:
+	kubectl kustomize deploy/kubernetes/base
+
+k8s-render-minikube:
+	kubectl kustomize deploy/kubernetes/overlays/minikube
+
+k8s-rollout-status:
+	kubectl rollout status deployment/gateway -n devops-platform
+	kubectl rollout status deployment/products-service -n devops-platform
+	kubectl rollout status deployment/users-service -n devops-platform
+	kubectl rollout status deployment/payments-service -n devops-platform
+	kubectl rollout status deployment/orders-service -n devops-platform
+
+k8s-test-all:
+	@echo "Testing gateway routes on Minikube..."
+	@curl -s http://$$(minikube ip):30080/health && echo
+	@curl -s http://$$(minikube ip):30080/products && echo
+	@curl -s http://$$(minikube ip):30080/users && echo
+	@curl -s http://$$(minikube ip):30080/payments && echo
+	@curl -s http://$$(minikube ip):30080/orders && echo
+

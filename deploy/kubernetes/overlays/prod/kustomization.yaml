@@ -8,40 +8,29 @@ resources:
 
 images:
   - name: devops-gateway
-    newName: devops-gateway
-    newTag: local
+    newName: ghcr.io/juanchogonza98/devops-gateway
+    newTag: "1.0.0"
   - name: devops-orders-service
-    newName: devops-orders-service
-    newTag: local
+    newName: ghcr.io/juanchogonza98/devops-orders-service
+    newTag: "1.0.0"
   - name: devops-payments-service
-    newName: devops-payments-service
-    newTag: local
+    newName: ghcr.io/juanchogonza98/devops-payments-service
+    newTag: "1.0.0"
   - name: devops-products-service
-    newName: devops-products-service
-    newTag: local
+    newName: ghcr.io/juanchogonza98/devops-products-service
+    newTag: "1.0.0"
   - name: devops-users-service
-    newName: devops-users-service
-    newTag: local
+    newName: ghcr.io/juanchogonza98/devops-users-service
+    newTag: "1.0.0"
 
 patches:
-  - target:
-      kind: Service
-      name: gateway
-    patch: |-
-      - op: replace
-        path: /spec/type
-        value: NodePort
-      - op: add
-        path: /spec/ports/0/nodePort
-        value: 30080
-
   - target:
       kind: Deployment
       name: gateway
     patch: |-
       - op: add
         path: /spec/replicas
-        value: 1
+        value: 2
       - op: add
         path: /spec/template/spec/containers/0/imagePullPolicy
         value: IfNotPresent
@@ -52,7 +41,7 @@ patches:
     patch: |-
       - op: add
         path: /spec/replicas
-        value: 1
+        value: 2
       - op: add
         path: /spec/template/spec/containers/0/imagePullPolicy
         value: IfNotPresent
@@ -63,7 +52,7 @@ patches:
     patch: |-
       - op: add
         path: /spec/replicas
-        value: 1
+        value: 2
       - op: add
         path: /spec/template/spec/containers/0/imagePullPolicy
         value: IfNotPresent
@@ -74,7 +63,7 @@ patches:
     patch: |-
       - op: add
         path: /spec/replicas
-        value: 1
+        value: 2
       - op: add
         path: /spec/template/spec/containers/0/imagePullPolicy
         value: IfNotPresent
@@ -85,7 +74,8 @@ patches:
     patch: |-
       - op: add
         path: /spec/replicas
-        value: 1
+        value: 2
       - op: add
         path: /spec/template/spec/containers/0/imagePullPolicy
         value: IfNotPresent
+        

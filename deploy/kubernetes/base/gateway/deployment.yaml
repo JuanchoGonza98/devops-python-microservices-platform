@@ -17,8 +17,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: devops-gateway:local
-          imagePullPolicy: IfNotPresent
+          image: devops-gateway
           ports:
             - containerPort: 8080
           readinessProbe:

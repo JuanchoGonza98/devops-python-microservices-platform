@@ -17,8 +17,7 @@ spec:
     spec:
       containers:
         - name: orders-service
-          image: devops-orders-service:local
-          imagePullPolicy: IfNotPresent
+          image: devops-orders-service
           ports:
             - containerPort: 8004
           readinessProbe:

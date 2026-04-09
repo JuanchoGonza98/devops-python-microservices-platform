@@ -17,8 +17,7 @@ spec:
     spec:
       containers:
         - name: products-service
-          image: devops-products-service:local
-          imagePullPolicy: IfNotPresent
+          image: devops-products-service
           ports:
             - containerPort: 8001
           readinessProbe:
