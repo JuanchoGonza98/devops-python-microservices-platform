@@ -118,3 +118,5 @@ k8s-test-all:
 	@curl -s http://$$(minikube ip):30080/payments && echo
 	@curl -s http://$$(minikube ip):30080/orders && echo
 
+k8s-render-prod:
+	kubectl kustomize deploy/kubernetes/overlays/prod >/dev/null
