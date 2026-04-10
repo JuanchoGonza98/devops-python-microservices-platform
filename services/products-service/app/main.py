@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, HTTPException
 
 app = FastAPI(
@@ -6,17 +7,24 @@ app = FastAPI(
     description="Products microservice for the DevOps Python Microservices Platform",
 )
 
+APP_ENV = os.getenv("APP_ENV", "development")
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+SERVICE_NAME = os.getenv("SERVICE_NAME", "products-service")
+
 PRODUCTS = [
     {"id": 1, "name": "Adjustable Dumbbell", "price": 120.0, "currency": "USD"},
     {"id": 2, "name": "Training Mat", "price": 35.5, "currency": "USD"},
     {"id": 3, "name": "Resistance Bands", "price": 18.0, "currency": "USD"},
 ]
 
-
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "service": "products-service"}
-
+    return {
+        "status": "ok",
+        "service": SERVICE_NAME,
+        "app_env": APP_ENV,
+        "log_level": LOG_LEVEL,
+    }
 
 @app.get("/products")
 def list_products():
