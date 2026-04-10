@@ -9,7 +9,7 @@ app = FastAPI(
 
 APP_ENV = os.getenv("APP_ENV", "development")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
-SERVICE_NAME = os.getenv("SERVICE_NAME", "unknown-service")
+SERVICE_NAME = os.getenv("SERVICE_NAME", "products-service")
 
 PRODUCTS = [
     {"id": 1, "name": "Adjustable Dumbbell", "price": 120.0, "currency": "USD"},

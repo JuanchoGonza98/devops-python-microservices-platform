@@ -8,10 +8,12 @@ client = TestClient(app)
 def test_health_check():
     response = client.get("/health")
     assert response.status_code == 200
-    assert response.json() == {
-        "status": "ok",
-        "service": "orders-service",
-    }
+
+    data = response.json()
+    assert data["status"] == "ok"
+    assert data["service"] == "orders-service"
+    assert data["app_env"] == "development"
+    assert data["log_level"] == "INFO"
 
 
 def test_list_orders():

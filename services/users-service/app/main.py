@@ -10,7 +10,7 @@ app = FastAPI(
 
 APP_ENV = os.getenv("APP_ENV", "development")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
-SERVICE_NAME = os.getenv("SERVICE_NAME", "unknown-service")
+SERVICE_NAME = os.getenv("SERVICE_NAME", "users-service")
 
 class UserCreate(BaseModel):
     name: str
