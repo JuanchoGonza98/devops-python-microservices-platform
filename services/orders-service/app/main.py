@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import List
@@ -8,6 +9,9 @@ app = FastAPI(
     description="Orders microservice for the DevOps Python Microservices Platform",
 )
 
+APP_ENV = os.getenv("APP_ENV", "development")
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+SERVICE_NAME = os.getenv("SERVICE_NAME", "unknown-service")
 
 class OrderCreate(BaseModel):
     user_id: int = Field(..., gt=0)
@@ -31,8 +35,12 @@ ORDERS = [
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "service": "orders-service"}
-
+    return {
+        "status": "ok",
+        "service": SERVICE_NAME,
+        "app_env": APP_ENV,
+        "log_level": LOG_LEVEL,
+    }
 
 @app.get("/orders")
 def list_orders():
