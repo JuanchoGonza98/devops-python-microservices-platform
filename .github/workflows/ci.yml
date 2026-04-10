@@ -45,6 +45,30 @@ jobs:
             echo "Makefile not found. Skipping docs validation."
           fi
 
+  validate-k8s:
+    name: Validate Kubernetes manifests
+    runs-on: ubuntu-latest
+    needs: validate-docs
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Render Kubernetes base
+        shell: bash
+        run: make k8s-render-base
+
+      - name: Render Kubernetes minikube overlay
+        shell: bash
+        run: make k8s-render-minikube
+
+      - name: Render Kubernetes prod overlay
+        shell: bash
+        run: make k8s-render-prod
+
   test-services:
     name: Test ${{ matrix.service.name }}
     runs-on: ubuntu-latest
@@ -113,7 +137,9 @@ jobs:
   build-images:
     name: Build Docker image - ${{ matrix.image.name }}
     runs-on: ubuntu-latest
-    needs: test-services
+    needs:
+      - test-services
+      - validate-k8s
 
     strategy:
       fail-fast: false
@@ -161,6 +187,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - validate-docs
+      - validate-k8s
       - test-services
       - build-images
     steps:
