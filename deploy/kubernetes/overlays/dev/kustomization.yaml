@@ -7,21 +7,21 @@ resources:
   - ../../base
 
 images:
-  - name: devops-gateway
-    newName: ghcr.io/juanchoGonza98/devops-gateway
-    newTag: dev
+  - name: ghcr.io/juanchogonza98/devops-gateway
+    newName: ghcr.io/juanchogonza98/devops-gateway
+    newTag: ci-717db057550630b2934af10bb653b4ca12af413d
   - name: devops-orders-service
-    newName: ghcr.io/juanchoGonza98/devops-orders-service
-    newTag: dev
+    newName: ghcr.io/juanchogonza98/devops-orders-service
+    newTag: ci-717db057550630b2934af10bb653b4ca12af413d
   - name: devops-payments-service
-    newName: ghcr.io/juanchoGonza98/devops-payments-service
-    newTag: dev
+    newName: ghcr.io/juanchogonza98/devops-payments-service
+    newTag: ci-717db057550630b2934af10bb653b4ca12af413d
   - name: devops-products-service
-    newName: ghcr.io/juanchoGonza98/devops-products-service
-    newTag: dev
+    newName: ghcr.io/juanchogonza98/devops-products-service
+    newTag: ci-717db057550630b2934af10bb653b4ca12af413d
   - name: devops-users-service
-    newName: ghcr.io/juanchoGonza98/devops-users-service
-    newTag: dev
+    newName: ghcr.io/juanchogonza98/devops-users-service
+    newTag: ci-717db057550630b2934af10bb653b4ca12af413d
 
 patches:
   - target:
