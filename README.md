@@ -133,9 +133,9 @@ curl http://127.0.0.1:8080/orders
 | Docker Compose               | Done        |
 | Kubernetes (Minikube)        | Done        |
 | CI with GitHub Actions       | Done        |
-| GitOps with Argo CD          | In progress |
-| Infrastructure with Terraform| Upcoming    |
-| Cloud deployment on AWS      | Upcoming    |
+| GitOps with Argo CD          | Done        |
+| Infrastructure with Terraform| Done        |
+| Cloud deployment on AWS      | Done        |
 
 ---
 
@@ -148,6 +148,7 @@ curl http://127.0.0.1:8080/orders
 | [`docs/decisions/adr-002-gitops-argocd.md`](docs/decisions/adr-002-gitops-argocd.md) | ADR: GitOps with Argo CD |
 | [`docs/runbooks/docker-compose-local-stack.md`](docs/runbooks/docker-compose-local-stack.md) | Local stack runbook |
 | [`docs/runbooks/kubernetes-minikube.md`](docs/runbooks/kubernetes-minikube.md) | Kubernetes Minikube runbook |
+| [`docs/runbooks/eks-alb-argocd-deployment.md`](docs/runbooks/eks-alb-argocd-deployment.md) | AWS EKS deployment with ALB Ingress and Argo CD |
 
 ---
 
