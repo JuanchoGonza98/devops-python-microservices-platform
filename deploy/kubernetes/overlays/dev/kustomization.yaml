@@ -5,7 +5,7 @@ namespace: devops-platform
 
 resources:
   - ../../base
-
+  - gateway-ingress.yaml
 images:
   - name: ghcr.io/juanchogonza98/devops-gateway
     newName: ghcr.io/juanchogonza98/devops-gateway
