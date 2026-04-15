@@ -1,0 +1,10 @@
+cluster_version = "1.33"
+
+cluster_endpoint_public_access_cidrs = [
+  "YOUR_PUBLIC_IP/32"
+]
+
+node_instance_types = ["t3.medium"]
+node_desired_size   = 1
+node_min_size       = 1
+node_max_size       = 2
