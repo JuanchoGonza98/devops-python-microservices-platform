@@ -9,6 +9,357 @@ import {
 } from './services/api'
 import './App.css'
 
+const styles = {
+  page: {
+    minHeight: '100vh',
+    background:
+      'linear-gradient(180deg, #f8fafc 0%, #eef2ff 35%, #f8fafc 100%)',
+    color: '#0f172a',
+    padding: '32px 20px 48px'
+  },
+  container: {
+    maxWidth: '1400px',
+    margin: '0 auto'
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '16px',
+    flexWrap: 'wrap',
+    marginBottom: '24px'
+  },
+  brandWrap: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '16px'
+  },
+  brandMark: {
+    width: '56px',
+    height: '56px',
+    borderRadius: '18px',
+    display: 'grid',
+    placeItems: 'center',
+    fontWeight: 800,
+    fontSize: '1rem',
+    color: '#ffffff',
+    background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+    boxShadow: '0 12px 30px rgba(37, 99, 235, 0.28)'
+  },
+  brandKicker: {
+    margin: 0,
+    fontSize: '0.82rem',
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+    color: '#64748b',
+    fontWeight: 700
+  },
+  brandTitle: {
+    margin: '4px 0 0',
+    fontSize: '1.9rem',
+    lineHeight: 1.15
+  },
+  nav: {
+    display: 'flex',
+    gap: '10px',
+    flexWrap: 'wrap'
+  },
+  navLink: {
+    textDecoration: 'none',
+    color: '#0f172a',
+    background: '#ffffff',
+    border: '1px solid #e2e8f0',
+    padding: '10px 14px',
+    borderRadius: '999px',
+    fontWeight: 600,
+    boxShadow: '0 4px 14px rgba(15, 23, 42, 0.04)'
+  },
+  hero: {
+    display: 'grid',
+    gridTemplateColumns: '1.4fr 1fr',
+    gap: '20px',
+    marginBottom: '24px'
+  },
+  heroCard: {
+    background: '#ffffff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '24px',
+    padding: '28px',
+    boxShadow: '0 16px 40px rgba(15, 23, 42, 0.07)'
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: '0.78rem',
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+    color: '#6366f1',
+    fontWeight: 800
+  },
+  heroTitle: {
+    margin: '10px 0 12px',
+    fontSize: '2rem',
+    lineHeight: 1.15
+  },
+  heroText: {
+    margin: 0,
+    color: '#475569',
+    fontSize: '1rem',
+    lineHeight: 1.7
+  },
+  helperRow: {
+    display: 'flex',
+    gap: '12px',
+    flexWrap: 'wrap',
+    marginTop: '18px'
+  },
+  helperBadge: {
+    background: '#eff6ff',
+    color: '#1d4ed8',
+    border: '1px solid #bfdbfe',
+    borderRadius: '999px',
+    padding: '8px 12px',
+    fontSize: '0.88rem',
+    fontWeight: 700
+  },
+  statsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    gap: '14px'
+  },
+  statCard: {
+    background: '#ffffff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '20px',
+    padding: '20px',
+    boxShadow: '0 12px 30px rgba(15, 23, 42, 0.06)'
+  },
+  statLabel: {
+    display: 'block',
+    fontSize: '0.85rem',
+    color: '#64748b',
+    marginBottom: '8px',
+    fontWeight: 700
+  },
+  statValue: {
+    display: 'block',
+    fontSize: '2rem',
+    fontWeight: 800
+  },
+  alert: {
+    marginBottom: '18px',
+    borderRadius: '16px',
+    padding: '14px 16px',
+    fontWeight: 600
+  },
+  info: {
+    background: '#eff6ff',
+    color: '#1d4ed8',
+    border: '1px solid #bfdbfe'
+  },
+  error: {
+    background: '#fef2f2',
+    color: '#b91c1c',
+    border: '1px solid #fecaca'
+  },
+  success: {
+    background: '#ecfdf5',
+    color: '#047857',
+    border: '1px solid #a7f3d0'
+  },
+  section: {
+    marginBottom: '28px'
+  },
+  sectionHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '12px',
+    marginBottom: '14px',
+    flexWrap: 'wrap'
+  },
+  sectionTitle: {
+    margin: 0,
+    fontSize: '1.35rem'
+  },
+  sectionSubtitle: {
+    margin: '6px 0 0',
+    color: '#64748b'
+  },
+  badge: {
+    background: '#eef2ff',
+    color: '#4338ca',
+    borderRadius: '999px',
+    padding: '8px 12px',
+    fontSize: '0.85rem',
+    fontWeight: 800
+  },
+  grid2: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    gap: '20px'
+  },
+  gridCards: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '16px'
+  },
+  panel: {
+    background: '#ffffff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '24px',
+    padding: '22px',
+    boxShadow: '0 14px 34px rgba(15, 23, 42, 0.06)'
+  },
+  panelTitleRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '12px',
+    marginBottom: '18px'
+  },
+  panelTitle: {
+    margin: 0,
+    fontSize: '1.1rem'
+  },
+  panelCount: {
+    background: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    color: '#334155',
+    borderRadius: '999px',
+    padding: '6px 10px',
+    fontSize: '0.82rem',
+    fontWeight: 800
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px'
+  },
+  formRow: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    gap: '14px'
+  },
+  label: {
+    display: 'block',
+    marginBottom: '8px',
+    fontSize: '0.92rem',
+    fontWeight: 700,
+    color: '#334155'
+  },
+  input: {
+    width: '100%',
+    boxSizing: 'border-box',
+    padding: '12px 14px',
+    borderRadius: '14px',
+    border: '1px solid #cbd5e1',
+    background: '#ffffff',
+    fontSize: '0.95rem',
+    outline: 'none'
+  },
+  select: {
+    width: '100%',
+    boxSizing: 'border-box',
+    padding: '12px 14px',
+    borderRadius: '14px',
+    border: '1px solid #cbd5e1',
+    background: '#ffffff',
+    fontSize: '0.95rem',
+    outline: 'none'
+  },
+  checkboxGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gap: '12px'
+  },
+  checkboxCard: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '12px',
+    padding: '14px',
+    borderRadius: '16px',
+    border: '1px solid #e2e8f0',
+    background: '#f8fafc'
+  },
+  summary: {
+    background: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    borderRadius: '18px',
+    padding: '16px',
+    display: 'grid',
+    gap: '10px'
+  },
+  summaryLine: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '12px',
+    alignItems: 'center'
+  },
+  primaryBtn: {
+    border: 0,
+    borderRadius: '14px',
+    padding: '13px 16px',
+    fontSize: '0.95rem',
+    fontWeight: 800,
+    color: '#ffffff',
+    cursor: 'pointer',
+    background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+    boxShadow: '0 12px 28px rgba(59, 130, 246, 0.28)'
+  },
+  list: {
+    display: 'grid',
+    gap: '14px',
+    padding: 0,
+    margin: 0,
+    listStyle: 'none'
+  },
+  item: {
+    border: '1px solid #e2e8f0',
+    borderRadius: '18px',
+    padding: '16px',
+    background: '#ffffff'
+  },
+  itemTop: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: '12px',
+    flexWrap: 'wrap',
+    marginBottom: '10px'
+  },
+  itemTitle: {
+    fontWeight: 800,
+    fontSize: '1rem'
+  },
+  itemMeta: {
+    color: '#475569',
+    fontSize: '0.92rem',
+    lineHeight: 1.6
+  },
+  pricePill: {
+    background: '#ecfeff',
+    color: '#0f766e',
+    border: '1px solid #99f6e4',
+    borderRadius: '999px',
+    padding: '6px 10px',
+    fontWeight: 800,
+    fontSize: '0.82rem'
+  },
+  statusPill: {
+    background: '#eef2ff',
+    color: '#4338ca',
+    border: '1px solid #c7d2fe',
+    borderRadius: '999px',
+    padding: '6px 10px',
+    fontWeight: 800,
+    fontSize: '0.82rem'
+  },
+  empty: {
+    margin: 0,
+    color: '#64748b'
+  }
+}
+
 function App() {
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
@@ -51,7 +402,7 @@ function App() {
       setPayments(paymentsData)
     } catch (err) {
       console.error('Error loading data:', err)
-      setError('No se pudieron cargar los datos desde el gateway.')
+      setError('Could not load data from the gateway.')
     } finally {
       setLoading(false)
     }
@@ -68,6 +419,10 @@ function App() {
   const selectedOrderTotal = useMemo(() => {
     return selectedProducts.reduce((acc, product) => acc + Number(product.price || 0), 0)
   }, [selectedProducts])
+
+  const selectedUser = useMemo(() => {
+    return users.find((user) => String(user.id) === String(orderForm.userId))
+  }, [users, orderForm.userId])
 
   const selectedOrderForPayment = useMemo(() => {
     return orders.find((order) => String(order.id) === String(paymentForm.orderId))
@@ -119,47 +474,33 @@ function App() {
     setSuccessMessage('')
 
     if (!orderForm.userId) {
-      setError('Debes seleccionar un usuario para crear la orden.')
+      setError('You must select a user before creating an order.')
       return
     }
 
     if (orderForm.productIds.length === 0) {
-      setError('Debes seleccionar al menos un producto.')
+      setError('You must select at least one product.')
       return
-    }
-
-    const payload = {
-      user_id: Number(orderForm.userId),
-      product_ids: orderForm.productIds,
-      total_amount: Number(selectedOrderTotal.toFixed(2)),
-      currency: 'USD',
-      status: 'created'
     }
 
     try {
       setSubmittingOrder(true)
-      const createdOrder = await createOrder(payload)
 
-      await loadData()
+      await createOrder({
+        user_id: Number(orderForm.userId),
+        product_ids: orderForm.productIds
+      })
 
+      setSuccessMessage('Order created successfully.')
       setOrderForm({
         userId: '',
         productIds: []
       })
 
-      setSuccessMessage('Orden creada correctamente.')
-
-      if (createdOrder && createdOrder.id) {
-        setPaymentForm((prev) => ({
-          ...prev,
-          orderId: String(createdOrder.id),
-          amount: String(createdOrder.total_amount ?? payload.total_amount),
-          currency: createdOrder.currency ?? 'USD'
-        }))
-      }
+      await loadData()
     } catch (err) {
       console.error('Error creating order:', err)
-      setError('No se pudo crear la orden. Revisa el contrato del servicio de órdenes.')
+      setError('Could not create the order. Check the orders service contract.')
     } finally {
       setSubmittingOrder(false)
     }
@@ -171,28 +512,26 @@ function App() {
     setSuccessMessage('')
 
     if (!paymentForm.orderId) {
-      setError('Debes seleccionar una orden para registrar el pago.')
+      setError('You must select an order before registering a payment.')
       return
     }
 
-    if (!paymentForm.amount) {
-      setError('Debes indicar el monto del pago.')
+    if (!paymentForm.amount || Number(paymentForm.amount) <= 0) {
+      setError('The payment amount must be greater than zero.')
       return
-    }
-
-    const payload = {
-      order_id: Number(paymentForm.orderId),
-      amount: Number(paymentForm.amount),
-      currency: paymentForm.currency,
-      method: paymentForm.method,
-      status: 'approved'
     }
 
     try {
       setSubmittingPayment(true)
-      await createPayment(payload)
-      await loadData()
 
+      await createPayment({
+        order_id: Number(paymentForm.orderId),
+        amount: Number(paymentForm.amount),
+        currency: paymentForm.currency,
+        method: paymentForm.method
+      })
+
+      setSuccessMessage('Payment registered successfully.')
       setPaymentForm({
         orderId: '',
         amount: '',
@@ -200,330 +539,422 @@ function App() {
         method: 'credit_card'
       })
 
-      setSuccessMessage('Pago registrado correctamente.')
+      await loadData()
     } catch (err) {
       console.error('Error creating payment:', err)
-      setError('No se pudo registrar el pago. Revisa el contrato del servicio de pagos.')
+      setError('Could not register the payment. Check the payments service contract.')
     } finally {
       setSubmittingPayment(false)
     }
   }
 
   return (
-    <div className="page-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <div className="brand-mark">DP</div>
-          <div>
-            <p className="brand-kicker">Microservices Demo</p>
-            <h1 className="brand-title">DevOps Python Microservices Platform</h1>
+    <div style={styles.page}>
+      <div style={styles.container}>
+        <header style={styles.header}>
+          <div style={styles.brandWrap}>
+            <div style={styles.brandMark}>DP</div>
+            <div>
+              <p style={styles.brandKicker}>End-to-End DevOps Demo</p>
+              <h1 style={styles.brandTitle}>DevOps Python Microservices Platform</h1>
+            </div>
           </div>
-        </div>
 
-        <nav className="topnav">
-          <a href="#dashboard">Dashboard</a>
-          <a href="#catalog">Catalog</a>
-          <a href="#operations">Operations</a>
-        </nav>
-      </header>
+          <nav style={styles.nav}>
+            <a href="#overview" style={styles.navLink}>Overview</a>
+            <a href="#catalog" style={styles.navLink}>Catalog</a>
+            <a href="#operations" style={styles.navLink}>Operations</a>
+            <a href="#activity" style={styles.navLink}>Activity</a>
+          </nav>
+        </header>
 
-      <main className="dashboard" id="dashboard">
-        <section className="hero-card">
-          <div>
-            <p className="eyebrow">Frontend Application</p>
-            <h2>Unified dashboard through the gateway</h2>
-            <p className="hero-text">
-              Esta interfaz consume el gateway Nginx y centraliza operaciones sobre
-              products, users, orders y payments.
+        <section id="overview" style={styles.hero}>
+          <div style={styles.heroCard}>
+            <p style={styles.eyebrow}>Frontend Application</p>
+            <h2 style={styles.heroTitle}>Friendly dashboard powered by the Nginx gateway</h2>
+            <p style={styles.heroText}>
+              This interface centralizes the consumption of products, users, orders and payments
+              through a single gateway entry point. It is designed to be clearer, more breathable
+              and easier to demo during your DevOps portfolio presentation.
             </p>
+
+            <div style={styles.helperRow}>
+              <span style={styles.helperBadge}>React + Vite</span>
+              <span style={styles.helperBadge}>Nginx Gateway</span>
+              <span style={styles.helperBadge}>FastAPI Microservices</span>
+            </div>
           </div>
 
-          <div className="stats-grid">
-            <article className="stat-card">
-              <span className="stat-label">Products</span>
-              <strong className="stat-value">{products.length}</strong>
+          <div style={styles.statsGrid}>
+            <article style={styles.statCard}>
+              <span style={styles.statLabel}>Products</span>
+              <strong style={styles.statValue}>{products.length}</strong>
             </article>
 
-            <article className="stat-card">
-              <span className="stat-label">Users</span>
-              <strong className="stat-value">{users.length}</strong>
+            <article style={styles.statCard}>
+              <span style={styles.statLabel}>Users</span>
+              <strong style={styles.statValue}>{users.length}</strong>
             </article>
 
-            <article className="stat-card">
-              <span className="stat-label">Orders</span>
-              <strong className="stat-value">{orders.length}</strong>
+            <article style={styles.statCard}>
+              <span style={styles.statLabel}>Orders</span>
+              <strong style={styles.statValue}>{orders.length}</strong>
             </article>
 
-            <article className="stat-card">
-              <span className="stat-label">Payments</span>
-              <strong className="stat-value">{payments.length}</strong>
+            <article style={styles.statCard}>
+              <span style={styles.statLabel}>Payments</span>
+              <strong style={styles.statValue}>{payments.length}</strong>
             </article>
           </div>
         </section>
 
-        {loading && <p className="info-message">Cargando datos...</p>}
-        {error && <p className="error-banner">{error}</p>}
-        {successMessage && <p className="success-banner">{successMessage}</p>}
+        {loading && (
+          <div style={{ ...styles.alert, ...styles.info }}>
+            Loading platform data...
+          </div>
+        )}
 
-        {!loading && !error && (
+        {error && (
+          <div style={{ ...styles.alert, ...styles.error }}>
+            {error}
+          </div>
+        )}
+
+        {successMessage && (
+          <div style={{ ...styles.alert, ...styles.success }}>
+            {successMessage}
+          </div>
+        )}
+
+        {!loading && (
           <>
-            <section className="content-grid" id="catalog">
-              <section className="panel">
-                <div className="panel-header">
-                  <h3>Products</h3>
-                  <span className="badge">{products.length}</span>
+            <section id="catalog" style={styles.section}>
+              <div style={styles.sectionHeader}>
+                <div>
+                  <h2 style={styles.sectionTitle}>Catalog</h2>
+                  <p style={styles.sectionSubtitle}>
+                    Browse available products and registered users.
+                  </p>
                 </div>
+                <span style={styles.badge}>Read operations</span>
+              </div>
 
-                {products.length === 0 ? (
-                  <p className="empty">No hay productos.</p>
-                ) : (
-                  <ul className="resource-list">
-                    {products.map((product) => (
-                      <li key={product.id} className="resource-item">
-                        <div className="resource-topline">
-                          <strong>{product.name}</strong>
-                          <span className="price-pill">
-                            {product.price} {product.currency}
-                          </span>
-                        </div>
-                        <div className="meta-row">Product ID: {product.id}</div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
+              <div style={styles.grid2}>
+                <section style={styles.panel}>
+                  <div style={styles.panelTitleRow}>
+                    <h3 style={styles.panelTitle}>Products</h3>
+                    <span style={styles.panelCount}>{products.length}</span>
+                  </div>
 
-              <section className="panel">
-                <div className="panel-header">
-                  <h3>Users</h3>
-                  <span className="badge">{users.length}</span>
-                </div>
+                  {products.length === 0 ? (
+                    <p style={styles.empty}>No products available.</p>
+                  ) : (
+                    <ul style={styles.list}>
+                      {products.map((product) => (
+                        <li key={product.id} style={styles.item}>
+                          <div style={styles.itemTop}>
+                            <div style={styles.itemTitle}>{product.name}</div>
+                            <span style={styles.pricePill}>
+                              {product.price} {product.currency}
+                            </span>
+                          </div>
+                          <div style={styles.itemMeta}>Product ID: {product.id}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
 
-                {users.length === 0 ? (
-                  <p className="empty">No hay usuarios.</p>
-                ) : (
-                  <ul className="resource-list">
-                    {users.map((user) => (
-                      <li key={user.id} className="resource-item">
-                        <div className="resource-topline">
-                          <strong>{user.name}</strong>
-                        </div>
-                        <div className="meta-row">User ID: {user.id}</div>
-                        <div className="meta-row">{user.email}</div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
+                <section style={styles.panel}>
+                  <div style={styles.panelTitleRow}>
+                    <h3 style={styles.panelTitle}>Users</h3>
+                    <span style={styles.panelCount}>{users.length}</span>
+                  </div>
+
+                  {users.length === 0 ? (
+                    <p style={styles.empty}>No users available.</p>
+                  ) : (
+                    <ul style={styles.list}>
+                      {users.map((user) => (
+                        <li key={user.id} style={styles.item}>
+                          <div style={styles.itemTop}>
+                            <div style={styles.itemTitle}>{user.name}</div>
+                          </div>
+                          <div style={styles.itemMeta}>User ID: {user.id}</div>
+                          <div style={styles.itemMeta}>{user.email}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              </div>
             </section>
 
-            <section className="content-grid" id="operations">
-              <section className="panel">
-                <div className="panel-header">
-                  <h3>Create Order</h3>
+            <section id="operations" style={styles.section}>
+              <div style={styles.sectionHeader}>
+                <div>
+                  <h2 style={styles.sectionTitle}>Operations</h2>
+                  <p style={styles.sectionSubtitle}>
+                    Create orders and register payments from the same dashboard.
+                  </p>
                 </div>
+                <span style={styles.badge}>Write operations</span>
+              </div>
 
-                <form className="form-stack" onSubmit={handleCreateOrder}>
-                  <div className="form-group">
-                    <label htmlFor="userId">User</label>
-                    <select
-                      id="userId"
-                      value={orderForm.userId}
-                      onChange={handleOrderUserChange}
-                    >
-                      <option value="">Selecciona un usuario</option>
-                      {users.map((user) => (
-                        <option key={user.id} value={user.id}>
-                          {user.name} ({user.email})
-                        </option>
-                      ))}
-                    </select>
+              <div style={styles.grid2}>
+                <section style={styles.panel}>
+                  <div style={styles.panelTitleRow}>
+                    <h3 style={styles.panelTitle}>Create Order</h3>
                   </div>
 
-                  <div className="form-group">
-                    <label>Products</label>
-                    <div className="checkbox-grid">
-                      {products.map((product) => (
-                        <label key={product.id} className="checkbox-card">
-                          <input
-                            type="checkbox"
-                            checked={orderForm.productIds.includes(product.id)}
-                            onChange={() => handleProductToggle(product.id)}
-                          />
-                          <div>
-                            <strong>{product.name}</strong>
-                            <div className="meta-row">
-                              {product.price} {product.currency}
+                  <form style={styles.form} onSubmit={handleCreateOrder}>
+                    <div>
+                      <label htmlFor="userId" style={styles.label}>User</label>
+                      <select
+                        id="userId"
+                        value={orderForm.userId}
+                        onChange={handleOrderUserChange}
+                        style={styles.select}
+                      >
+                        <option value="">Select a user</option>
+                        {users.map((user) => (
+                          <option key={user.id} value={user.id}>
+                            {user.name} ({user.email})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={styles.label}>Products</label>
+                      <div style={styles.checkboxGrid}>
+                        {products.map((product) => (
+                          <label key={product.id} style={styles.checkboxCard}>
+                            <input
+                              type="checkbox"
+                              checked={orderForm.productIds.includes(product.id)}
+                              onChange={() => handleProductToggle(product.id)}
+                            />
+                            <div>
+                              <strong>{product.name}</strong>
+                              <div style={styles.itemMeta}>
+                                {product.price} {product.currency}
+                              </div>
+                              <div style={styles.itemMeta}>ID: {product.id}</div>
                             </div>
-                          </div>
-                        </label>
-                      ))}
+                          </label>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="summary-box">
-                    <div className="summary-line">
-                      <span>Selected products</span>
-                      <strong>{orderForm.productIds.length}</strong>
+                    <div style={styles.summary}>
+                      <div style={styles.summaryLine}>
+                        <span>Selected user</span>
+                        <strong>{selectedUser ? selectedUser.name : '-'}</strong>
+                      </div>
+                      <div style={styles.summaryLine}>
+                        <span>Selected products</span>
+                        <strong>{selectedProducts.length}</strong>
+                      </div>
+                      <div style={styles.summaryLine}>
+                        <span>Estimated total</span>
+                        <strong>{selectedOrderTotal.toFixed(2)} USD</strong>
+                      </div>
                     </div>
-                    <div className="summary-line">
-                      <span>Estimated total</span>
-                      <strong>{selectedOrderTotal.toFixed(2)} USD</strong>
-                    </div>
-                  </div>
 
-                  <button type="submit" className="primary-btn" disabled={submittingOrder}>
-                    {submittingOrder ? 'Creating order...' : 'Create order'}
-                  </button>
-                </form>
-              </section>
-
-              <section className="panel">
-                <div className="panel-header">
-                  <h3>Create Payment</h3>
-                </div>
-
-                <form className="form-stack" onSubmit={handleCreatePayment}>
-                  <div className="form-group">
-                    <label htmlFor="orderId">Order</label>
-                    <select
-                      id="orderId"
-                      name="orderId"
-                      value={paymentForm.orderId}
-                      onChange={handlePaymentOrderChange}
+                    <button
+                      type="submit"
+                      style={{
+                        ...styles.primaryBtn,
+                        opacity: submittingOrder ? 0.7 : 1
+                      }}
+                      disabled={submittingOrder}
                     >
-                      <option value="">Selecciona una orden</option>
-                      {orders.map((order) => (
-                        <option key={order.id} value={order.id}>
-                          Order #{order.id} - {order.total_amount} {order.currency}
-                        </option>
-                      ))}
-                    </select>
+                      {submittingOrder ? 'Creating order...' : 'Create order'}
+                    </button>
+                  </form>
+                </section>
+
+                <section style={styles.panel}>
+                  <div style={styles.panelTitleRow}>
+                    <h3 style={styles.panelTitle}>Create Payment</h3>
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="amount">Amount</label>
-                    <input
-                      id="amount"
-                      name="amount"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      value={paymentForm.amount}
-                      onChange={handlePaymentChange}
-                      placeholder="Ej.: 120.00"
-                    />
-                  </div>
+                  <form style={styles.form} onSubmit={handleCreatePayment}>
+                    <div>
+                      <label htmlFor="orderId" style={styles.label}>Order</label>
+                      <select
+                        id="orderId"
+                        name="orderId"
+                        value={paymentForm.orderId}
+                        onChange={handlePaymentOrderChange}
+                        style={styles.select}
+                      >
+                        <option value="">Select an order</option>
+                        {orders.map((order) => (
+                          <option key={order.id} value={order.id}>
+                            Order #{order.id} - {order.total_amount} {order.currency}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
 
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="currency">Currency</label>
+                    <div>
+                      <label htmlFor="amount" style={styles.label}>Amount</label>
                       <input
-                        id="currency"
-                        name="currency"
-                        type="text"
-                        value={paymentForm.currency}
+                        id="amount"
+                        name="amount"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={paymentForm.amount}
                         onChange={handlePaymentChange}
+                        placeholder="Ex.: 120.00"
+                        style={styles.input}
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label htmlFor="method">Method</label>
-                      <select
-                        id="method"
-                        name="method"
-                        value={paymentForm.method}
-                        onChange={handlePaymentChange}
-                      >
-                        <option value="credit_card">credit_card</option>
-                        <option value="debit_card">debit_card</option>
-                        <option value="bank_transfer">bank_transfer</option>
-                        <option value="cash">cash</option>
-                      </select>
-                    </div>
-                  </div>
+                    <div style={styles.formRow}>
+                      <div>
+                        <label htmlFor="currency" style={styles.label}>Currency</label>
+                        <input
+                          id="currency"
+                          name="currency"
+                          type="text"
+                          value={paymentForm.currency}
+                          onChange={handlePaymentChange}
+                          style={styles.input}
+                        />
+                      </div>
 
-                  <div className="summary-box">
-                    <div className="summary-line">
-                      <span>Selected order</span>
-                      <strong>{selectedOrderForPayment ? `#${selectedOrderForPayment.id}` : '-'}</strong>
+                      <div>
+                        <label htmlFor="method" style={styles.label}>Method</label>
+                        <select
+                          id="method"
+                          name="method"
+                          value={paymentForm.method}
+                          onChange={handlePaymentChange}
+                          style={styles.select}
+                        >
+                          <option value="credit_card">credit_card</option>
+                          <option value="debit_card">debit_card</option>
+                          <option value="bank_transfer">bank_transfer</option>
+                          <option value="cash">cash</option>
+                        </select>
+                      </div>
                     </div>
-                    <div className="summary-line">
-                      <span>Order status</span>
-                      <strong>{selectedOrderForPayment?.status ?? '-'}</strong>
-                    </div>
-                  </div>
 
-                  <button type="submit" className="primary-btn" disabled={submittingPayment}>
-                    {submittingPayment ? 'Registering payment...' : 'Register payment'}
-                  </button>
-                </form>
-              </section>
+                    <div style={styles.summary}>
+                      <div style={styles.summaryLine}>
+                        <span>Selected order</span>
+                        <strong>
+                          {selectedOrderForPayment ? `#${selectedOrderForPayment.id}` : '-'}
+                        </strong>
+                      </div>
+                      <div style={styles.summaryLine}>
+                        <span>Order status</span>
+                        <strong>{selectedOrderForPayment?.status ?? '-'}</strong>
+                      </div>
+                      <div style={styles.summaryLine}>
+                        <span>Order total</span>
+                        <strong>
+                          {selectedOrderForPayment
+                            ? `${selectedOrderForPayment.total_amount} ${selectedOrderForPayment.currency}`
+                            : '-'}
+                        </strong>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      style={{
+                        ...styles.primaryBtn,
+                        opacity: submittingPayment ? 0.7 : 1
+                      }}
+                      disabled={submittingPayment}
+                    >
+                      {submittingPayment ? 'Registering payment...' : 'Register payment'}
+                    </button>
+                  </form>
+                </section>
+              </div>
             </section>
 
-            <section className="content-grid">
-              <section className="panel">
-                <div className="panel-header">
-                  <h3>Orders</h3>
-                  <span className="badge">{orders.length}</span>
+            <section id="activity" style={styles.section}>
+              <div style={styles.sectionHeader}>
+                <div>
+                  <h2 style={styles.sectionTitle}>Activity</h2>
+                  <p style={styles.sectionSubtitle}>
+                    Recent orders and payments generated by the platform.
+                  </p>
                 </div>
+                <span style={styles.badge}>Live data</span>
+              </div>
 
-                {orders.length === 0 ? (
-                  <p className="empty">No hay órdenes.</p>
-                ) : (
-                  <ul className="resource-list">
-                    {orders.map((order) => (
-                      <li key={order.id} className="resource-item">
-                        <div className="resource-topline">
-                          <strong>Order #{order.id}</strong>
-                          <span className="status-pill">{order.status}</span>
-                        </div>
-                        <div className="meta-row">
-                          Total: {order.total_amount} {order.currency}
-                        </div>
-                        <div className="meta-row">User ID: {order.user_id}</div>
-                        <div className="meta-row">
-                          Product IDs:{' '}
-                          {Array.isArray(order.product_ids)
-                            ? order.product_ids.join(', ')
-                            : '-'}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
+              <div style={styles.grid2}>
+                <section style={styles.panel}>
+                  <div style={styles.panelTitleRow}>
+                    <h3 style={styles.panelTitle}>Orders</h3>
+                    <span style={styles.panelCount}>{orders.length}</span>
+                  </div>
 
-              <section className="panel">
-                <div className="panel-header">
-                  <h3>Payments</h3>
-                  <span className="badge">{payments.length}</span>
-                </div>
+                  {orders.length === 0 ? (
+                    <p style={styles.empty}>No orders yet.</p>
+                  ) : (
+                    <ul style={styles.list}>
+                      {orders.map((order) => (
+                        <li key={order.id} style={styles.item}>
+                          <div style={styles.itemTop}>
+                            <div style={styles.itemTitle}>Order #{order.id}</div>
+                            <span style={styles.statusPill}>{order.status}</span>
+                          </div>
+                          <div style={styles.itemMeta}>
+                            Total: {order.total_amount} {order.currency}
+                          </div>
+                          <div style={styles.itemMeta}>User ID: {order.user_id}</div>
+                          <div style={styles.itemMeta}>
+                            Product IDs:{' '}
+                            {Array.isArray(order.product_ids)
+                              ? order.product_ids.join(', ')
+                              : '-'}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
 
-                {payments.length === 0 ? (
-                  <p className="empty">No hay pagos.</p>
-                ) : (
-                  <ul className="resource-list">
-                    {payments.map((payment) => (
-                      <li key={payment.id} className="resource-item">
-                        <div className="resource-topline">
-                          <strong>Payment #{payment.id}</strong>
-                          <span className="status-pill">{payment.status}</span>
-                        </div>
-                        <div className="meta-row">
-                          Amount: {payment.amount} {payment.currency}
-                        </div>
-                        <div className="meta-row">Method: {payment.method}</div>
-                        <div className="meta-row">Order ID: {payment.order_id}</div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
+                <section style={styles.panel}>
+                  <div style={styles.panelTitleRow}>
+                    <h3 style={styles.panelTitle}>Payments</h3>
+                    <span style={styles.panelCount}>{payments.length}</span>
+                  </div>
+
+                  {payments.length === 0 ? (
+                    <p style={styles.empty}>No payments yet.</p>
+                  ) : (
+                    <ul style={styles.list}>
+                      {payments.map((payment) => (
+                        <li key={payment.id} style={styles.item}>
+                          <div style={styles.itemTop}>
+                            <div style={styles.itemTitle}>Payment #{payment.id}</div>
+                            <span style={styles.statusPill}>{payment.status}</span>
+                          </div>
+                          <div style={styles.itemMeta}>
+                            Amount: {payment.amount} {payment.currency}
+                          </div>
+                          <div style={styles.itemMeta}>Method: {payment.method}</div>
+                          <div style={styles.itemMeta}>Order ID: {payment.order_id}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              </div>
             </section>
           </>
         )}
-      </main>
+      </div>
     </div>
   )
 }
