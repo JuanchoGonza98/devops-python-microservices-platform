@@ -104,8 +104,8 @@ The platform is designed to evolve progressively across environments:
 | Local dev    | Python + uvicorn          | Done           |
 | Local stack  | Docker Compose            | Done           |
 | Kubernetes   | Minikube + Kustomize      | Done           |
-| GitOps CD    | Argo CD                   | In progress    |
-| Cloud        | Terraform + AWS           | Upcoming       |
+| GitOps CD    | Argo CD                   | Done           |
+| Cloud        | Terraform + AWS           | Done           |
 
 ---
 
